@@ -1,4 +1,4 @@
-﻿﻿import os
+import os
 import time
 import copy
 import json
@@ -30,7 +30,7 @@ from metrics.evaluation.evaluator import InpaintingEvaluator
 from metrics.evaluation.losses.base_loss import FIDScore
 from metrics.evaluation.utils import load_yaml
 
-#----------------------------------------------------------------------------
+
 
 def setup_snapshot_image_grid(training_set, random_seed=0):
     rnd = np.random.RandomState(random_seed)
@@ -69,7 +69,7 @@ def setup_snapshot_image_grid(training_set, random_seed=0):
     images, masks, labels = zip(*[training_set[i] for i in grid_indices])
     return (gw, gh), np.stack(images), np.stack(masks), np.stack(labels)
 
-#----------------------------------------------------------------------------
+
 
 def save_image_grid(img, erased_img, inv_mask, pred_img, fname, drange, grid_size):
     lo, hi = (0, 255)
@@ -108,7 +108,7 @@ def save_image_grid(img, erased_img, inv_mask, pred_img, fname, drange, grid_siz
     if C == 3:
         PIL.Image.fromarray(f_img, 'RGB').save(fname + '.png')
 
-#----------------------------------------------------------------------------
+
 
 def training_loop(
     run_dir                 = '.',      # Output directory.
@@ -394,12 +394,12 @@ def training_loop(
         # Save network snapshot.
         snapshot_pkl = None
         snapshot_data = None
-        if (network_snapshot_ticks is not None) and (done or cur_tick % network_snapshot_ticks == 0) and cur_tick is not 0:
+        if (network_snapshot_ticks != None) and (done or cur_tick % network_snapshot_ticks == 0) and cur_tick != 0:
             snapshot_data = dict(training_set_kwargs=dict(training_set_kwargs))
             for name, module in [('G', G), ('D', D), ('G_ema', G_ema), ('augment_pipe', augment_pipe)]:
                 if module is not None:
-                    if num_gpus > 1:
-                        misc.check_ddp_consistency(module, ignore_regex=r'.*\.w_avg')
+                    # if num_gpus > 1:
+                    #     misc.check_ddp_consistency(module, ignore_regex=r'.*\.w_avg')
                     module = copy.deepcopy(module).eval().requires_grad_(False).cpu()
                 snapshot_data[name] = module
                 del module # conserve memory
@@ -409,7 +409,7 @@ def training_loop(
                     pickle.dump(snapshot_data, f)
 
 
-        if (snapshot_data is not None) and metrics and (done or cur_tick % network_snapshot_ticks == 0) and cur_tick is not 0:
+        if (snapshot_data != None) and metrics and (done or cur_tick % network_snapshot_ticks == 0) and cur_tick != 0:
             msk_type = eval_img_data.split('/')[-1]
             if rank == 0:
                 create_folders(msk_type)
@@ -484,4 +484,4 @@ def training_loop(
         print()
         print(Fore.YELLOW + 'Exiting...')
 
-#----------------------------------------------------------------------------
+

@@ -10,3 +10,4 @@ extras/
 **.DS_Store
 Texture-Inpaint
 **.pth
+training-runs-inp

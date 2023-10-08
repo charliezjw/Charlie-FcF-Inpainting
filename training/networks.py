@@ -1,4 +1,4 @@
-﻿﻿# Modified from https://github.com/NVlabs/stylegan2-ada-pytorch
+# Modified from https://github.com/NVlabs/stylegan2-ada-pytorch
 
 import numpy as np
 import torch
@@ -6,7 +6,7 @@ from torch_utils import misc
 from torch_utils import persistence
 from training.models import *
 
-#----------------------------------------------------------------------------
+
 
 @persistence.persistent_class
 class MappingNetwork(torch.nn.Module):
@@ -86,7 +86,7 @@ class MappingNetwork(torch.nn.Module):
                     x[:, :truncation_cutoff] = self.w_avg.lerp(x[:, :truncation_cutoff], truncation_psi)
         return x
 
-#----------------------------------------------------------------------------
+
 
 @persistence.persistent_class
 class EncoderNetwork(torch.nn.Module):
@@ -153,7 +153,7 @@ class EncoderNetwork(torch.nn.Module):
         z = torch.randn((B, self.z_dim), requires_grad=False, dtype=x.dtype, device=x.device) ## Noise for Co-Modulation
         return x, z, feats 
 
-#----------------------------------------------------------------------------
+
 
 @persistence.persistent_class
 class SynthesisNetwork(torch.nn.Module):
@@ -217,7 +217,7 @@ class SynthesisNetwork(torch.nn.Module):
             x, img = block(x, mask, feats, img, (mod_vector0, mod_vector1, mod_vector_rgb), fname=fname, **block_kwargs)
         return img
 
-#----------------------------------------------------------------------------
+
 
 @persistence.persistent_class
 class Generator(torch.nn.Module):
@@ -249,7 +249,7 @@ class Generator(torch.nn.Module):
         img = self.synthesis(x_global, mask, feats, ws, fname=fname, **synthesis_kwargs)
         return img
 
-#----------------------------------------------------------------------------
+
 
 @persistence.persistent_class
 class Discriminator(torch.nn.Module):
@@ -308,4 +308,4 @@ class Discriminator(torch.nn.Module):
         x = self.b4(x, img, cmap)
         return x
 
-#----------------------------------------------------------------------------
+
