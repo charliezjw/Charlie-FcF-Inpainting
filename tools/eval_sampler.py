@@ -2,8 +2,8 @@ import os
 import random
 import tqdm
 
-val_files_path           = os.path.abspath('.') + '/datasets/places2_dataset/val/'
-list_of_random_val_files = os.path.abspath('.') + '/datasets/places2_dataset/eval_random_files.txt'
+val_files_path           = '/data/charlie/places2_dataset/val/'
+list_of_random_val_files = '/data/charlie/places2_dataset/eval_random_files.txt'
 val_files      = [val_files_path + image for image in os.listdir(val_files_path)]
 
 random.shuffle(val_files)

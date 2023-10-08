@@ -9,3 +9,4 @@ sample_collection.py
 extras/
 **.DS_Store
 Texture-Inpaint
+**.pth
