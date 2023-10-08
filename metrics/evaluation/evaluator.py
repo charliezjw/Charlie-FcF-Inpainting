@@ -132,7 +132,7 @@ class InpaintingEvaluator():
             score.to(device)
             with torch.no_grad():
                 score.reset()
-                for _, batch in tqdm.auto.tqdm(enumerate(dataloader, 0), total=len(dataloader), desc=score_name + f' on GPU: {device}'):
+                for _, batch in tqdm.tqdm(enumerate(dataloader, 0), total=len(dataloader), desc=score_name + f' on GPU: {device}'):
                     batch = move_to_device(batch, device)
                     image_batch, mask_batch = batch['image'], batch['mask']
                     if self.clamp_image_range is not None:

@@ -7,7 +7,7 @@ python train.py \
     --aug 'noaug' \
     --metrics True \
     --eval_img_data /data/charlie/places2_dataset/evaluation/random_segm_256
-    --batch 128
+    --batch 512
 
 python train.py \
   --outdir=training-runs-inp \
