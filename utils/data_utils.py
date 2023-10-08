@@ -168,4 +168,3 @@ def get_dir(src_point, rot_rad):
     src_result[1] = src_point[0] * sn + src_point[1] * cs
 
     return src_result
-

@@ -351,6 +351,3 @@ if __name__ == '__main__':
 # striding  253360.506  253360.506  0.00
 # downsample_with_averaging 224.098 224.098 2.86
 # downsample_with_max_pooling 690.474 690.474 0.93
-
-
-

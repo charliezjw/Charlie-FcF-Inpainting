@@ -523,7 +523,3 @@ if __name__ == '__main__':
 # downsample_with_max_poolin      988.361   988.361    2.02
 # ndzoom                          163.104   163.104   12.26
 # striding                      81589.340 81589.340    0.02
-
-
-
-
