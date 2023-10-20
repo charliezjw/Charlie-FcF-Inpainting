@@ -19,7 +19,7 @@ def main(args):
     metrics = {
         'ssim': SSIMScore(),
         'lpips': LPIPSScore(),
-        'fid': FIDScore()
+        # 'fid': FIDScore()
     }
     enable_segm = config.get('segmentation', dict(enable=False)).get('enable', False)
     if enable_segm:

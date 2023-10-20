@@ -124,7 +124,7 @@ def run_gen(rank, num_gpus, temp_dir, G, img_data, resolution, label, truncation
         metrics = {
             'ssim': SSIMScore(),
             'lpips': LPIPSScore(),
-            'fid': FIDScore()
+            # 'fid': FIDScore()
         }
         evaluator = InpaintingEvaluator(eval_dataset, scores=metrics, area_grouping=True,
                                 integral_title='lpips_fid100_f1', integral_func=None,

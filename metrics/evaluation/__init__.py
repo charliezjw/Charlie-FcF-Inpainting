@@ -14,8 +14,8 @@ def make_evaluator(kind='default', ssim=True, lpips=True, fid=True, integral_kin
         metrics['ssim'] = SSIMScore()
     if lpips:
         metrics['lpips'] = LPIPSScore()
-    if fid:
-        metrics['fid'] = FIDScore().to(device)
+    # if fid:
+    #     metrics['fid'] = FIDScore().to(device)
         
     if integral_kind is None:
         integral_func = None

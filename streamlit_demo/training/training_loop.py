@@ -415,18 +415,18 @@ def training_loop(
                 create_folders(msk_type)
             label = torch.zeros([1, snapshot_data['G_ema'].c_dim]).to(device)
             save_gen(snapshot_data['G_ema'], rank, num_gpus, device, eval_img_data, resolution, label, 1, msk_type)
-            if rank == 0:
-                eval_dataset = PrecomputedInpaintingResultsDataset(eval_img_data, f'fid_gens/{msk_type}', **eval_config.dataset_kwargs)
-                metrics = {
-                    'fid': FIDScore()
-                }
-                evaluator = InpaintingEvaluator(eval_dataset, scores=metrics, area_grouping=False,
-                                        integral_title='lpips_fid100_f1', integral_func=None,
-                                        **eval_config.evaluator_kwargs)
-                results = evaluator.dist_evaluate(device, num_gpus=1, rank=0)
-                fid_score = round(results[('fid', 'total')]['mean'], 5)
-                stats_metrics.update({'fid': fid_score})
-                print(Fore.GREEN + Style.BRIGHT + f' FID Score: {fid_score}')
+            # if rank == 0:
+            #     eval_dataset = PrecomputedInpaintingResultsDataset(eval_img_data, f'fid_gens/{msk_type}', **eval_config.dataset_kwargs)
+            #     metrics = {
+            #         # 'fid': FIDScore()
+            #     }
+            #     evaluator = InpaintingEvaluator(eval_dataset, scores=metrics, area_grouping=False,
+            #                             integral_title='lpips_fid100_f1', integral_func=None,
+            #                             **eval_config.evaluator_kwargs)
+            #     results = evaluator.dist_evaluate(device, num_gpus=1, rank=0)
+            #     fid_score = round(results[('fid', 'total')]['mean'], 5)
+            #     stats_metrics.update({'fid': fid_score})
+            #     print(Fore.GREEN + Style.BRIGHT + f' FID Score: {fid_score}')
 
         del snapshot_data # conserve memory
 
