@@ -12,3 +12,6 @@ Texture-Inpaint
 **.pth
 training-runs-inp
 fid_gens
+datasets
+visualizations
+ckpt
